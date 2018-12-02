@@ -1,6 +1,6 @@
 package com.javaee.feign.controllers;
 
-import com.javaee.feign.integrations.GreetingIntegration;
+import com.javaee.feign.services.GreetingService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class HomeController {
 
-    private GreetingIntegration greetingIntegration;
+    private GreetingService greetingService;
 
-    public HomeController(GreetingIntegration greetingIntegration) {
-        this.greetingIntegration = greetingIntegration;
+    public HomeController(GreetingService greetingService) {
+        this.greetingService = greetingService;
     }
 
     @GetMapping("/home")
     public String home() {
-        return greetingIntegration.greeting();
+        return greetingService.getGreeting();
     }
 }

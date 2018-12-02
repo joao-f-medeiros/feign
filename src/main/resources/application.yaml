@@ -12,3 +12,17 @@ eureka:
     enabled: true
   instance:
     prefer-ip-address: true
+
+hystrix:
+  command:
+    greeting:
+      circuitBreaker:
+        requestVolumeThreshold: 15
+        sleepWindowInMilliseconds: 8000
+        errorThresholdPercentage: 50
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
